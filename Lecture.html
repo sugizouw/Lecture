@@ -1,0 +1,79 @@
+<head>
+	<link rel="apple-touch-icon" href="images/note.gif" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" >
+	<title>Web標準化(W3C)とHTML5の状況</title>
+</head>
+<link rel="stylesheet" href="css/main.css" type="text/css" media="all">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/base64.js"></script>
+<script type="text/javascript" src="js/canvas2image.js"></script>
+<script type="text/javascript" src="js/notes.js"></script> 
+<script type="text/javascript" src="js/draw.js"></script> 
+<script type="text/javascript" src="js/page.js"></script> 
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("jqueryui", "1.7");</script>
+<body onload="Canvasinit()">
+<div><input type="search" id="textSearchInput"><button onclick="searchFieldUpdated()">付箋検索</button>&emsp;<button onclick="newNote()">付箋追加</button></div> 
+<BR>
+<table border=0 width=800 align="center">
+	<tr align="center"><td>
+    <button onclick="prevpage()"><img src="images/Arrow2.jpg" width="20" height="20"></button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    <button onclick="toppage()"><img src="images/Arrow3.jpg" width="20" height="20"></button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+    <button onclick="nextpage()"><img src="images/Arrow1.jpg" width="20" height="20"></button>
+	</td></tr>
+	<tr><td>
+	<div align="center" id="images" style="position:relative;width:0px;height:0px">
+		<img src="images/img01.jpg" width="700" height="450">
+		<img src="images/img02.jpg" width="700" height="450">
+		<img src="images/img03.jpg" width="700" height="450">
+		<img src="images/img04.jpg" width="700" height="450">
+		<img src="images/img05.jpg" width="700" height="450">
+		<img src="images/img06.jpg" width="700" height="450">
+		<img src="images/img07.jpg" width="700" height="450">
+		<img src="images/img08.jpg" width="700" height="450">
+		<img src="images/img09.jpg" width="700" height="450">
+		<img src="images/img10.jpg" width="700" height="450">
+		<img src="images/img11.jpg" width="700" height="450">
+		<img src="images/img12.jpg" width="700" height="450">
+		<img src="images/img13.jpg" width="700" height="450">
+		<img src="images/img14.jpg" width="700" height="450">
+		<img src="images/img15.jpg" width="700" height="450">
+		<img src="images/img16.jpg" width="700" height="450">
+		<img src="images/img17.jpg" width="700" height="450">
+		<img src="images/img18.jpg" width="700" height="450">
+		</div>
+	</td></tr>
+</table>
+<canvas id="myCanvas" width="880" height="450"  style="position: absolute; top:72px; left:0px;" >
+ HTML5　Canvasに対応したブラウザーを使用してください。
+</canvas>
+<div id="menu"  style="position: absolute; top:620px; left:150px;">
+	<button onclick="clearData()">手書きクリア</button>&emsp;<button onclick="ALLclearData(true)">全手書きクリア</button>&emsp;<button onclick="NoteclearData(true)">全付箋クリア</button>&emsp;<button onclick="AllDeleteData()">全付箋・手書きクリア</button>
+</div>
+<div id="colorPalet"  style="position: absolute; top:500px; left:670px;">
+	<div id="black"></div>
+	<div id="blue"></div>
+	<div id="red"></div>
+</div>
+<overlay id="myOverlay" 
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+		  xmlns:html="http://www.w3.org/1999/xhtml">
+	<statusbar id="status-bar">
+    	<scrollbox width="1" height="1">
+            <html:canvas id="WebCanvas" display="none" />
+        </scrollbox>
+    </statusbar>
+</overlay>
+
+</body>
+<script type="text/javascript">
+$(function(){
+  // タッチイベントの停止
+  $(document).bind("touchmove", function(){
+    event.preventDefault();
+  });
+  $("#images>img").css({"position":"absolute","top":"0px"});
+  $("#images>img:gt(0)").hide();   
+});
+</script>
